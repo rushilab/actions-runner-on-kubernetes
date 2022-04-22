@@ -142,3 +142,4 @@ watch kubectl get pods --namespace self-hosted-runners
 * Push the workflows into your repository
 * Once the workflow jobs are executing, you would see the runners / pods are dynamically creating and terminating within the autoscaling limit
 * See it in action
+* [![Demo video](https://img.youtube.com/vi/K5gSNnoTslg/0.jpg)](https://www.youtube.com/watch?v=K5gSNnoTslg "Demo video")
