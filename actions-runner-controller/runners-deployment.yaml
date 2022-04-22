@@ -1,0 +1,32 @@
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: RunnerDeployment
+metadata:
+  name: demo-runner
+spec:
+  template:
+    spec:
+      image: summerwind/actions-runner-dind
+      dockerdWithinRunnerContainer: true
+
+      # Use either Organization name or Repository name where you want to register your runners. Only one of them is supported.
+      organization: <ORG_NAME>
+      # repository: <REPO_NAME>
+      labels:
+        - eks
+        - demo
+        - autoscalling
+---
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: HorizontalRunnerAutoscaler
+metadata:
+  name: demo-runner-autoscaler
+spec:
+  # Runners in the targeted RunnerDeployment won't be scaled down
+  # for 5 minutes instead of the default 10 minutes now
+  scaleDownDelaySecondsAfterScaleOut: 300
+  scaleTargetRef:
+    name: demo-runner
+  minReplicas: 0
+  maxReplicas: 4
+  scaleUpTriggers:
+  - githubEvent: {}
