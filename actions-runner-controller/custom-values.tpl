@@ -1,3 +1,3 @@
 authSecret:
-  github_token: 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
+  github_token: <YOUR_TOKEN_HERE>
   create: true
